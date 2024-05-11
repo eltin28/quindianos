@@ -1,0 +1,36 @@
+.navbar {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);    
+    width: 100%;
+    padding: 10px;
+    z-index: 1000;
+    position: fixed;
+}
+
+.custom-nav-item {
+    margin-right: 50px;
+}
+
+.logo {
+    width: 62px;
+    height: 56px;
+}
+
+.navbar-text{
+    font-family: 'Inika';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 31px;
+    color: #000000;
+    padding-left: 10px;
+}
+
+.container-fluid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-brand {
+    margin-right: 0 !important;
+}

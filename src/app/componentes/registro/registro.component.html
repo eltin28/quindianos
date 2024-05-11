@@ -1,0 +1,46 @@
+<div class="home-background">
+    <div class="container" id="container">
+        <div class="form-container sign-up-container">
+            <form #f="ngForm" (ngSubmit)="registrar()">
+                <h1>Crea tu cuenta</h1>
+                
+                <div className="input-field">
+                    <div className='edge-input-icon'>
+                        <input class="Input-registro" type="text" name="nombre" [(ngModel)]="registroClienteDTO.nombre" placeholder="Nombre" required/>
+                    </div>
+                </div>
+                <input class="Input-registro" type="text" name="nickname" maxlength="15" [(ngModel)]="registroClienteDTO.nickname" placeholder="Nickname" required/>
+                <input class="Input-registro" type="file" name="fotoPerfil" (change)="onFileChange($event)" required />
+                <input class="Input-registro" type="text" name="ciudadResidencia" [(ngModel)]="registroClienteDTO.ciudadResidencia" placeholder="Ciudad de residencia" />
+                <input class="Input-registro" type="email" name="Email" [(ngModel)]="registroClienteDTO.email" placeholder="Email" required/>
+                <input class="Input-registro" type="password" name="Password" minlength="5" [(ngModel)]="registroClienteDTO.password" placeholder="Contraseña" required/>
+                <input class="Input-registro" type="password" name="confirmaPassword" minlength="5" [(ngModel)]="registroClienteDTO.confirmaPassword" required placeholder="Repetir contraseña" />
+                @if (!sonIguales()) { <p>Las contraseñas no coinciden</p> }
+                <button type="submit" [disabled]="f.invalid || !sonIguales()" >Registrarse</button>
+            </form>
+        </div>
+        <div class="form-container sign-in-container">
+            <form action="#">
+                <h1>Ingresa</h1>
+                <input class="Input-registro" type="email" placeholder="Email" />
+                <input class="Input-registro" type="password" placeholder="Contraseña" />
+                <a href="#">Olvidaste tu contraseña?</a>
+                <button>Ingresa</button>
+            </form>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>¿Ya tienes una cuenta?</h1>
+                    <p>Para mantenerte conectado con nosotros, inicia sesión con tu información personal</p>
+                    <button class="ghost" id="signIn">Inicia sesion</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>¿Eres nuevo?</h1>
+                    <p>Da click en el botón "REGISTRATE" y comienza tu viaje con nosotros.</p>
+                    <button class="ghost" id="signUp">Registrate</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
