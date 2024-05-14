@@ -1,12 +1,13 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { RegistroClienteDTO } from '../../dto/registro-cliente-dto';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule } from '@angular/forms';
 import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-inicio',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, FontAwesomeModule],
   templateUrl: './registro.component.html',
   styleUrls: ['./registro.component.css']
 })
@@ -15,6 +16,8 @@ export class RegistroComponent implements OnInit {
   container: HTMLElement | null = null;
   registroClienteDTO: RegistroClienteDTO;
   archivos!:FileList;
+  showPassword = false;
+  activeIcon = 'fa-eye'; // Inicialmente, el icono de ojo abierto está activo
 
   constructor(@Inject(DOCUMENT) private document: Document) {
     this.registroClienteDTO = new RegistroClienteDTO();
@@ -58,5 +61,10 @@ export class RegistroComponent implements OnInit {
       return;
     }
     this.container.classList.toggle('right-panel-active');
+  }
+
+  togglePasswordVisibility() {
+    this.showPassword =!this.showPassword;
+    this.activeIcon = this.activeIcon === 'fa-eye'? 'fa-eye-slash' : 'fa-eye'; // Cambia el icono activo
   }
 }
