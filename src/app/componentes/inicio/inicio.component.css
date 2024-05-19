@@ -1,18 +1,18 @@
-.home-background {
-    background-image: url('../../../assets/Fondo2.jpeg');
-    background-size: cover;
-    background-position: center;
-    position: absolute;
+#mapa {
     width: 100%;
-    height: 89%; 
+    height: 400px; /* Ajusta la altura según sea necesario */
 }
 
+.container {
+    padding-top: 5%;
+}
+
+
 .input-field {
-    margin-bottom: 25px;
     background: rgba(255, 255, 255, 0.473);
     border-radius: 28px;
     border: 3px solid black;
-    margin-top: -10%;
+    margin-bottom: 5%;
 }
 
 .input-register {
@@ -22,15 +22,15 @@
     border-color: transparent;
     color: black;
     font-weight: bold;
-    font-size: 1.10rem; 
-    outline: none; 
+    font-size: 1.10rem;
+    outline: none;
 }
 
 .input-register::placeholder {
     color: black;
     font-weight: bold;
-    font-size: 1.10rem; 
-    line-height: 3; 
+    font-size: 1.10rem;
+    line-height: 3;
 }
 
 .edge-input-icon {
@@ -44,7 +44,7 @@
     padding: 2px;
 }
 
-.edge-input-icon:active { 
+.edge-input-icon:active {
     background: transparent;
     box-shadow: 0 0 0 4px rgba(38, 119, 156, 0.671);
     transition: step-start;
@@ -61,14 +61,11 @@
 }
 
 .inicio-text {
-    font-family: 'Inter', sans-serif;
     font-weight: 700;
     font-size: 80px;
     background: linear-gradient(180deg, #F3EA09 0%, #BBF121 49%, #15F93A 100%);
-    -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    margin-bottom: -10px;
 }
 
 .button-inicio{
@@ -81,6 +78,6 @@
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.651);
     border-radius: 10px;
     font-weight: bold;
-    font-size: 1rem; 
+    font-size: 1rem;
     border-color: transparent;
 }

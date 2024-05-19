@@ -1,21 +1,28 @@
-<div class="home-background">
-    <div class="container">
-        <div class="row justify-content-center align-items-center" style="height: 80vh;">
-            <div class="col-md-12">
-                <div class="input-field">
-                    <div class="edge-input-icon">
-                        <i class="fa fa-search icons-register"></i>
-                        <input
-                            class="input-register"
-                            type="text"
-                            placeholder="¿Qué vamos a buscar hoy?"
-                        />
-                    </div>
-                </div>                        
-                <h1 class="inicio-text">QUINDIO</h1>
-                <h1 class="inicio-text2">Tú proximo destino</h1>
-                <button class="button-inicio">Vamos a ello</button>
+<div class="container">
+    <form role="search" (submit)="iraBusqueda(textoBusqueda.value)">
+        <div class="input-field">
+            <div class="edge-input-icon">
+                <i class="fa fa-search icons-register"></i>
+                <input
+                    #textoBusqueda
+                    class="input-register"
+                    type="search" 
+                    placeholder="¿Qué vamos a buscar hoy?"
+                    aria-label="Search"
+                />
             </div>
+        </div>
+    </form>
+    <div class="row justify-content-center align-items-start" style="height: 80vh;">
+        <!-- Primera columna -->
+        <div class="col-md-6" style="display: flex; flex-direction: column; align-items: start;">
+            <h1 class="inicio-text mb-3">QUINDIO</h1>
+            <h1 class="inicio-text2 mb-3">Tú próximo destino</h1>
+            <button class="button-inicio mb-3">Vamos a ello</button>
+        </div>
+        <!-- Segunda columna -->
+        <div class="col-md-6">
+            <div id="mapa"></div>
         </div>
     </div>
 </div>

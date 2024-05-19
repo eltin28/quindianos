@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { RouterOutlet, Router } from '@angular/router';
+import { MapaService } from '../../servicios/mapa.service';
 
 @Component({
   selector: 'app-inicio',
@@ -8,7 +9,17 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './inicio.component.html',
   styleUrl: './inicio.component.css'
 })
-export class InicioComponent {
-  title = 'my-app';
-  footer = 'Universidad del Quindío - 2024-1';
+
+export class InicioComponent implements OnInit {
+  constructor(private mapaService: MapaService, private router: Router) { }
+  
+  ngOnInit(): void {
+    this.mapaService.crearMapa();
+  }
+
+  public iraBusqueda(valor:string){
+    if(valor){
+      this.router.navigate(["/busqueda", valor]);
+    }
+  }
 }

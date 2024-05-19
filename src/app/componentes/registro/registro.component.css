@@ -26,6 +26,10 @@
 	outline: none;
 }
 
+.form-select{
+	border: none;
+	background-color: transparent;
+}
 .ghost {
 	background-color: transparent;
 	border-color: #FFFFFF;

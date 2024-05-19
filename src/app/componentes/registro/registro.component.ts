@@ -3,11 +3,18 @@ import { RegistroClienteDTO } from '../../dto/registro-cliente-dto';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule } from '@angular/forms';
 import { DOCUMENT } from '@angular/common';
+import { PublicoService } from '../../servicios/publico.service';
+import { AuthService } from '../../servicios/auth.service';
+import { AlertaComponent } from '../alerta/alerta.component';
+import { Alerta } from '../../dto/alerta';
+import { LoginDTO } from '../../dto/login-dto';
+import { TokenService } from '../../servicios/token.service';
+import { mockLoginResponse } from '../../dto/mock-login-response';
 
 @Component({
   selector: 'app-inicio',
   standalone: true,
-  imports: [FormsModule, FontAwesomeModule],
+  imports: [FormsModule, FontAwesomeModule, AlertaComponent],
   templateUrl: './registro.component.html',
   styleUrls: ['./registro.component.css']
 })
@@ -15,12 +22,18 @@ export class RegistroComponent implements OnInit {
 
   container: HTMLElement | null = null;
   registroClienteDTO: RegistroClienteDTO;
+  loginDTO: LoginDTO;
   archivos!:FileList;
   showPassword = false;
   activeIcon = 'fa-eye'; // Inicialmente, el icono de ojo abierto está activo
+  ciudades: string[];
+  alerta!:Alerta;
 
-  constructor(@Inject(DOCUMENT) private document: Document) {
+  constructor(@Inject(DOCUMENT) private document: Document, private publicoService: PublicoService, private authService: AuthService, private tokenService: TokenService) {
     this.registroClienteDTO = new RegistroClienteDTO();
+    this.loginDTO = new LoginDTO();
+    this.ciudades = [];
+    this.cargarCiudades();
   }
 
   public sonIguales(): boolean {
@@ -35,11 +48,14 @@ export class RegistroComponent implements OnInit {
   }
 
   public registrar() {
-    if (this.registroClienteDTO.fotoPerfil != "") {
-      console.log(this.registroClienteDTO);
-    } else {
-      console.log("Debe cargar una foto");
-    }
+    this.authService.registrarCliente(this.registroClienteDTO).subscribe({
+      next: (data) => {
+        this.alerta = new Alerta(data.respuesta, "success");
+      },
+      error: (error) => {
+        this.alerta = new Alerta(error.error.respuesta, "danger");
+      }
+    });
   }
 
   ngOnInit(): void {
@@ -67,4 +83,49 @@ export class RegistroComponent implements OnInit {
     this.showPassword =!this.showPassword;
     this.activeIcon = this.activeIcon === 'fa-eye'? 'fa-eye-slash' : 'fa-eye'; // Cambia el icono activo
   }
+
+  // Cargar ciudades para mostrar las ciudades en el registro, el usuario selecciona de que ciudad es
+  private cargarCiudades() {
+    this.publicoService.listarCiudades().subscribe({
+      next: (data) => {
+        this.ciudades = data.respuesta;
+      },
+      error: (error) => {
+        console.log("Error al cargar las ciudades");
+      }
+      });
+  }
+
+  // Este pedazo está destinado para el login
+  //__________________________________________________________________________________________________________________
+  // public login() {
+  //   this.authService.loginCliente(this.loginDTO).subscribe({
+  //     next: data => {
+  //       this.tokenService.login(data.respuesta.token);
+  //     },
+  //     error: error => {
+  //       this.alerta = new Alerta(error.error.respuesta, "danger" );
+  //     }
+  //   });
+  // }
+
+  //Login prueba
+  
+  public login(useMockData?: boolean) {
+    let dataToUse = useMockData? mockLoginResponse : null;
+  
+    if (dataToUse) {
+      this.tokenService.login(dataToUse.respuesta.token);
+    } else {
+      this.authService.loginCliente(this.loginDTO).subscribe({
+        next: data => {
+          this.tokenService.login(data.respuesta.token);
+        },
+        error: error => {
+        this.alerta = new Alerta(error.error.respuesta, "danger" );
+        }
+        });
+    }
+  }
+  
 }

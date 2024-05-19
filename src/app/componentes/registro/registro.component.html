@@ -1,74 +1,78 @@
-<div class="home-background">
-    <div class="container" id="container">
-        <div class="form-container sign-up-container">
-            <form class="formRegistro" #f="ngForm" (ngSubmit)="registrar()">
-                <h1 style="font-weight: bold; margin: 0;">Crea tu cuenta</h1>
-                <div class="input-container">
-                    <i class="fa-solid fa-user"></i>
-                    <input class="Input-registro" type="text" name="nombre" [(ngModel)]="registroClienteDTO.nombre" placeholder="Nombre" required/>
-                </div>
-                <div class="input-container">
-                    <i class="fa-solid fa-user"></i>
-                    <input class="Input-registro" type="text" name="nickname" maxlength="15" [(ngModel)]="registroClienteDTO.nickname" placeholder="Nickname" required/>
-                </div>
-                <!-- <div class="input-container">
-                    <i class="fa-solid fa-envelope"></i>
-                    <input class="Input-registro" type="file" name="fotoPerfil" (change)="onFileChange($event)" required />
-                </div>
-                <div class="input-container">
-                    <i class="fa-solid fa-envelope"></i>
-                    <input class="Input-registro" type="text" name="ciudadResidencia" [(ngModel)]="registroClienteDTO.ciudadResidencia" placeholder="Ciudad de residencia" />
-                </div> -->
-                <div class="input-container">
-                    <i class="fa-solid fa-envelope"></i>
-                    <input class="Input-registro" type="email" name="Email" [(ngModel)]="registroClienteDTO.email" placeholder="Email" required/>
-                </div>
-                <div class="input-container">
-                    <i class="fa-solid fa-lock"></i>
-                    <input class="Input-registro" [type]="showPassword? 'text' : 'password'" name="Password" minlength="5" [(ngModel)]="registroClienteDTO.password" placeholder="Contraseña" required/>
-                    <i class="fa-solid {{activeIcon}}" (click)="togglePasswordVisibility()"></i>
-                </div>
-                <div class="input-container">
-                    <i class="fa-solid fa-lock"></i>
-                    <input class="Input-registro" [type]="showPassword? 'text' : 'password'" name="confirmaPassword" minlength="5" [(ngModel)]="registroClienteDTO.confirmaPassword" required placeholder="Repetir contraseña" />
-                    <i class="fa-solid {{activeIcon}}" (click)="togglePasswordVisibility()"></i>
-                </div>
-                @if (!sonIguales()) { <p>Las contraseñas no coinciden</p> }
-                <button class="buttonRegistro" type="submit" [disabled]="f.invalid || !sonIguales()" >Registrarse</button>
-            </form>
-        </div>
-        <div class="form-container sign-in-container">
-            <form class="formRegistro" action="#">
-                <h1 style="font-weight: bold; margin: 0;">Ingresa</h1>
-                <div class="input-container">
-                    <i class="fa-solid fa-user"></i>
-                    <input class="Input-registro" type="email" placeholder="Email" />
-                </div>
-                <div class="input-container">
-                    <i class="fa-solid fa-lock"></i>
-                    <input class="Input-registro" [type]="showPassword? 'text' : 'password'" placeholder="Contraseña" />
-                    <i class="fa-solid {{activeIcon}}" (click)="togglePasswordVisibility()"></i>
-                </div>
-                <a href="#" style="color: #333; font-size: 14px; text-decoration: none; margin: 15px 0;">Olvidaste tu contraseña?</a>
-                <button class="buttonRegistro">Ingresa</button>
-            </form>
-        </div>
-        <div class="overlay-container">
-            <div class="overlay">
-                <div class="overlay-panel overlay-left">
-                    <h1 style="font-weight: bold; margin: 0;">¿Ya tienes una cuenta?</h1>
-                    <p style="font-size: 14px; font-weight: 100; line-height: 20px; letter-spacing: 0.5px; margin: 20px 0 30px;">
-                        Para mantenerte conectado con nosotros, inicia sesión con tu información personal
-                    </p>
-                    <button class="buttonRegistro ghost" id="signIn">Inicia sesion</button>
-                </div>
-                <div class="overlay-panel overlay-right">
-                    <h1 style="font-weight: bold; margin: 0;">¿Eres nuevo?</h1>
-                    <p style="font-size: 14px; font-weight: 100; line-height: 20px; letter-spacing: 0.5px; margin: 20px 0 30px;">
-                        Da click en el botón "REGISTRATE" y comienza tu viaje con nosotros.
-                    </p>
-                    <button class="buttonRegistro ghost" id="signUp">Registrate</button>
-                </div>
+<div class="container" id="container">
+    <div class="form-container sign-up-container">
+        <form class="formRegistro" #f="ngForm">
+            <h1 style="font-weight: bold; margin: 0;">Crea tu cuenta</h1>
+            <div class="input-container">
+                <i class="fa-solid fa-user"></i>
+                <input class="Input-registro" type="text" name="nombre" [(ngModel)]="registroClienteDTO.nombre" placeholder="Nombre" required/>
+            </div>
+            <div class="input-container">
+                <i class="fa-solid fa-user"></i>
+                <input class="Input-registro" type="text" name="nickname" maxlength="15" [(ngModel)]="registroClienteDTO.nickname" placeholder="Nickname" required/>
+            </div>
+            <!-- <div class="input-container">
+                <i class="fa-solid fa-envelope"></i>
+                <input class="Input-registro" type="file" name="fotoPerfil" (change)="onFileChange($event)" required />
+            </div> -->
+            <div class="input-container">
+                <i class="fa-solid fa-map"></i>
+                <select name="ciudadResidencia" class="form-select" required [(ngModel)]="registroClienteDTO.ciudadResidencia" >
+                    <!-- <option value="" class="Input-registro">Ciudad de residencia</option>
+                    @for (item of ciudades; track $index) { 
+                        <option [value]="item" >{{item}}</option> 
+                    } -->
+                </select>
+            </div>
+            <div class="input-container">
+                <i class="fa-solid fa-envelope"></i>
+                <input class="Input-registro" type="email" name="Email" [(ngModel)]="registroClienteDTO.email" placeholder="Email" required/>
+            </div>
+            <div class="input-container">
+                <i class="fa-solid fa-lock"></i>
+                <input class="Input-registro" [type]="showPassword? 'text' : 'password'" name="Password" minlength="5" [(ngModel)]="registroClienteDTO.password" placeholder="Contraseña" required/>
+                <i class="fa-solid {{activeIcon}}" (click)="togglePasswordVisibility()"></i>
+            </div>
+            <div class="input-container">
+                <i class="fa-solid fa-lock"></i>
+                <input class="Input-registro" [type]="showPassword? 'text' : 'password'" name="confirmaPassword" minlength="5" [(ngModel)]="registroClienteDTO.confirmaPassword" required placeholder="Repetir contraseña" />
+                <i class="fa-solid {{activeIcon}}" (click)="togglePasswordVisibility()"></i>
+            </div>
+            @if (!sonIguales()) { <p>Las contraseñas no coinciden</p> }
+            <button class="buttonRegistro" type="submit" [disabled]="f.invalid || !sonIguales()" >Registrarse</button>
+        </form>
+    </div>
+    <div class="form-container sign-in-container">
+        <form class="formRegistro" action="#">
+            <h1 style="font-weight: bold; margin: 0;">Ingresa</h1>
+            <div class="input-container">
+                <i class="fa-solid fa-user"></i>
+                <input class="Input-registro" type="email" placeholder="Email" />
+            </div>
+            <div class="input-container">
+                <i class="fa-solid fa-lock"></i>
+                <input class="Input-registro" [type]="showPassword? 'text' : 'password'" placeholder="Contraseña" />
+                <i class="fa-solid {{activeIcon}}" (click)="togglePasswordVisibility()"></i>
+            </div>
+            <a href="#" style="color: #333; font-size: 14px; text-decoration: none; margin: 15px 0;">Olvidaste tu contraseña?</a>
+            <button class="buttonRegistro" (click)="login(true)">Ingresa</button>
+        </form>
+    </div>
+    <div class="overlay-container">
+        <div class="overlay">
+            <div class="overlay-panel overlay-left">
+                <h1 style="font-weight: bold; margin: 0;">¿Ya tienes una cuenta?</h1>
+                <p style="font-size: 14px; font-weight: 100; line-height: 20px; letter-spacing: 0.5px; margin: 20px 0 30px;">
+                    Para mantenerte conectado con nosotros, inicia sesión con tu información personal
+                </p>
+                <button class="buttonRegistro ghost" id="signIn">Inicia sesion</button>
+            </div>
+            <div class="overlay-panel overlay-right">
+                <h1 style="font-weight: bold; margin: 0;">¿Eres nuevo?</h1>
+                <p style="font-size: 14px; font-weight: 100; line-height: 20px; letter-spacing: 0.5px; margin: 20px 0 30px;">
+                    Da click en el botón "REGISTRATE" y comienza tu viaje con nosotros.
+                </p>
+                <button class="buttonRegistro ghost" id="signUp" (click)="registrar()">Registrate</button>
+                <app-alerta [alerta]="alerta"></app-alerta>
             </div>
         </div>
     </div>
