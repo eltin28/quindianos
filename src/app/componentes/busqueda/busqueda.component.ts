@@ -3,11 +3,13 @@ import { ActivatedRoute } from '@angular/router';
 import { NegociosService } from '../../servicios/negocios.service';
 import { MapaService } from '../../servicios/mapa.service';
 import { ItemNegocioDTO } from '../../dto/item-negocio-dto';
+import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-busqueda',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './busqueda.component.html',
   styleUrl: './busqueda.component.css'
 })

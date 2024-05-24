@@ -12,7 +12,7 @@
 	font-size: 12px;
 	font-weight: bold;
 	padding: 12px 45px;
-	margin: 12px;
+	margin-bottom: 20px;
 	letter-spacing: 1px;
 	text-transform: uppercase;
 	transition: transform 80ms ease-in;
@@ -90,6 +90,7 @@
 	width: 768px;
 	max-width: 100%;
 	min-height: 480px;
+	padding-bottom: 50px;
 }
 
 .form-container {
@@ -97,6 +98,7 @@
 	top: 0;
 	height: 100%;
 	transition: all 0.6s ease-in-out;
+	overflow-y: auto;
 }
 
 .sign-in-container {

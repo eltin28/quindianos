@@ -9,6 +9,7 @@ import { AlertaComponent } from '../alerta/alerta.component';
 import { Alerta } from '../../dto/alerta';
 import { LoginDTO } from '../../dto/login-dto';
 import { TokenService } from '../../servicios/token.service';
+import { ImagenService } from '../../servicios/imagen.service';
 import { mockLoginResponse } from '../../dto/mock-login-response';
 
 @Component({
@@ -25,11 +26,14 @@ export class RegistroComponent implements OnInit {
   loginDTO: LoginDTO;
   archivos!:FileList;
   showPassword = false;
-  activeIcon = 'fa-eye'; // Inicialmente, el icono de ojo abierto está activo
-  ciudades: string[];
+  activeIcon = 'fa-eye'; //el icono de ojo abierto está activo
+  // ciudades: string[];
   alerta!:Alerta;
 
-  constructor(@Inject(DOCUMENT) private document: Document, private publicoService: PublicoService, private authService: AuthService, private tokenService: TokenService) {
+  ciudades: any[]; 
+
+  constructor(@Inject(DOCUMENT) private document: Document, private publicoService: PublicoService, 
+    private authService: AuthService, private tokenService: TokenService, private imagenService: ImagenService) {
     this.registroClienteDTO = new RegistroClienteDTO();
     this.loginDTO = new LoginDTO();
     this.ciudades = [];
@@ -59,6 +63,7 @@ export class RegistroComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.cargarCiudades();
     this.container = this.document.getElementById('container'); // Get container reference
 
     if (this.container) {
@@ -84,48 +89,51 @@ export class RegistroComponent implements OnInit {
     this.activeIcon = this.activeIcon === 'fa-eye'? 'fa-eye-slash' : 'fa-eye'; // Cambia el icono activo
   }
 
-  // Cargar ciudades para mostrar las ciudades en el registro, el usuario selecciona de que ciudad es
-  private cargarCiudades() {
-    this.publicoService.listarCiudades().subscribe({
-      next: (data) => {
-        this.ciudades = data.respuesta;
-      },
-      error: (error) => {
-        console.log("Error al cargar las ciudades");
-      }
+  public subirImagen() {
+    if (this.archivos != null && this.archivos.length > 0) {
+      const formData = new FormData();
+      formData.append('file', this.archivos[0]);
+      this.imagenService.subir(formData).subscribe({
+        next: data => {
+          this.registroClienteDTO.fotoPerfil = data.respuesta.url;
+          this.alerta = new Alerta("Se ha subido la foto", "success");
+        },
+        error: error => {
+          this.alerta = new Alerta(error.error, "danger");
+        }
       });
+    } else {
+      this.alerta = new Alerta("Debe seleccionar una imagen y subirla", "danger");
+    }
   }
 
-  // Este pedazo está destinado para el login
-  //__________________________________________________________________________________________________________________
-  // public login() {
-  //   this.authService.loginCliente(this.loginDTO).subscribe({
-  //     next: data => {
-  //       this.tokenService.login(data.respuesta.token);
-  //     },
-  //     error: error => {
-  //       this.alerta = new Alerta(error.error.respuesta, "danger" );
-  //     }
-  //   });
-  // }
+  private cargarCiudades() {
+    // this.publicoService.listarCiudades().subscribe({
+    //   next: (data) => {
+    //     this.ciudades = data.respuesta;
+    //   },
+    //   error: (error) => {
+    //     console.log("Error al cargar las ciudades");
+    //   }
+    //   });
+    this.ciudades = [
+      {id: 1, nombre: "Bogotá"},
+      {id: 2, nombre: "Medellín"},
+      {id: 3, nombre: "Cali"}
+    ];  
+  }
 
-  //Login prueba
+  //__________________________________________________________________________________________________________________
   
-  public login(useMockData?: boolean) {
-    let dataToUse = useMockData? mockLoginResponse : null;
-  
-    if (dataToUse) {
-      this.tokenService.login(dataToUse.respuesta.token);
-    } else {
+  public login() {
       this.authService.loginCliente(this.loginDTO).subscribe({
         next: data => {
           this.tokenService.login(data.respuesta.token);
         },
         error: error => {
-        this.alerta = new Alerta(error.error.respuesta, "danger" );
+          this.alerta = new Alerta(error.error.respuesta, "danger" );
         }
         });
-    }
   }
   
 }

@@ -1,7 +1,9 @@
 <div class="container" id="container">
     <div class="form-container sign-up-container">
+        <div style="margin: 0 auto; width: 80%;">
+            <h1 style="font-weight: bold; margin-bottom: 20px; margin-top: 12px">Crea tu cuenta</h1>
+        </div>
         <form class="formRegistro" #f="ngForm">
-            <h1 style="font-weight: bold; margin: 0;">Crea tu cuenta</h1>
             <div class="input-container">
                 <i class="fa-solid fa-user"></i>
                 <input class="Input-registro" type="text" name="nombre" [(ngModel)]="registroClienteDTO.nombre" placeholder="Nombre" required/>
@@ -10,17 +12,21 @@
                 <i class="fa-solid fa-user"></i>
                 <input class="Input-registro" type="text" name="nickname" maxlength="15" [(ngModel)]="registroClienteDTO.nickname" placeholder="Nickname" required/>
             </div>
-            <!-- <div class="input-container">
+            <div class="input-container">
                 <i class="fa-solid fa-envelope"></i>
                 <input class="Input-registro" type="file" name="fotoPerfil" (change)="onFileChange($event)" required />
-            </div> -->
+            </div>
+            <button type="submit" [disabled]="archivos == null" class="btn btn-primary"
+                (click)="subirImagen()" >
+                <i class="fa-solid fa-cloud-arrow-up me-2"></i>Subir Foto
+            </button>
             <div class="input-container">
                 <i class="fa-solid fa-map"></i>
                 <select name="ciudadResidencia" class="form-select" required [(ngModel)]="registroClienteDTO.ciudadResidencia" >
-                    <!-- <option value="" class="Input-registro">Ciudad de residencia</option>
-                    @for (item of ciudades; track $index) { 
-                        <option [value]="item" >{{item}}</option> 
-                    } -->
+                    <option disabled selected value="">Seleccione una Ciudad</option>
+                    @for (ciudad of ciudades; track ciudad) {
+                        <option [value]="ciudad.nombre">{{ciudad.nombre}}</option>
+                    }                
                 </select>
             </div>
             <div class="input-container">
@@ -38,23 +44,23 @@
                 <i class="fa-solid {{activeIcon}}" (click)="togglePasswordVisibility()"></i>
             </div>
             @if (!sonIguales()) { <p>Las contraseñas no coinciden</p> }
-            <button class="buttonRegistro" type="submit" [disabled]="f.invalid || !sonIguales()" >Registrarse</button>
+            <button class="buttonRegistro" type="submit" [disabled]="f.invalid || !sonIguales()" (click)="registrar()">Registrarse</button>
         </form>
     </div>
     <div class="form-container sign-in-container">
-        <form class="formRegistro" action="#">
+        <form class="formRegistro" #f="ngForm">
             <h1 style="font-weight: bold; margin: 0;">Ingresa</h1>
             <div class="input-container">
                 <i class="fa-solid fa-user"></i>
-                <input class="Input-registro" type="email" placeholder="Email" />
+                <input class="Input-registro" type="email" [(ngModel)]="loginDTO.email" [ngModelOptions]="{standalone: true}" placeholder="Email" />
             </div>
             <div class="input-container">
                 <i class="fa-solid fa-lock"></i>
-                <input class="Input-registro" [type]="showPassword? 'text' : 'password'" placeholder="Contraseña" />
+                <input class="Input-registro" [type]="showPassword? 'text' : 'password'" [(ngModel)]="loginDTO.password" [ngModelOptions]="{standalone: true}" placeholder="Contraseña" />
                 <i class="fa-solid {{activeIcon}}" (click)="togglePasswordVisibility()"></i>
             </div>
             <a href="#" style="color: #333; font-size: 14px; text-decoration: none; margin: 15px 0;">Olvidaste tu contraseña?</a>
-            <button class="buttonRegistro" (click)="login(true)">Ingresa</button>
+            <button class="buttonRegistro" (click)="login()">Ingresa</button>
         </form>
     </div>
     <div class="overlay-container">
@@ -71,7 +77,7 @@
                 <p style="font-size: 14px; font-weight: 100; line-height: 20px; letter-spacing: 0.5px; margin: 20px 0 30px;">
                     Da click en el botón "REGISTRATE" y comienza tu viaje con nosotros.
                 </p>
-                <button class="buttonRegistro ghost" id="signUp" (click)="registrar()">Registrate</button>
+                <button class="buttonRegistro ghost" id="signUp" >Registrate</button>
                 <app-alerta [alerta]="alerta"></app-alerta>
             </div>
         </div>

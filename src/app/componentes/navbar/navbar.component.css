@@ -10,6 +10,20 @@
     margin-right: 50px;
 }
 
+.custom-nav-item-green {
+    margin-left: 75px;
+    margin-right: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: #15F93A;
+    border-radius: 15px;
+    font-weight: bold;
+}
+
+.login-style {
+    color: white;
+}
+
 .logo {
     width: 62px;
     height: 56px;

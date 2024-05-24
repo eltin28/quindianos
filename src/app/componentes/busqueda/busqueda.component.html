@@ -1,10 +1,22 @@
-<div class="card">
+<div class="card" *ngFor="let item of resultados">
     <div class="card-header ps-5 pt-4 pb-4">
-        <h5 class="mb-0"><i class="fa-solid fa-magnifying-glass-location me-2">
-            </i>Resultados de búsqueda para "{{textoBusqueda}}"
-        </h5>
+        <h5 class="card-title mb-0"><i class="fa-solid fa-magnifying-glass-location me-2"></i>Resultados de "{{textoBusqueda}}"</h5>
     </div>
-    <div class="card-body p-5">
-        <div id="mapa"></div>
+    <div class="custom-card">
+        <div class="columnImage image-container">
+            <img [src]="item.imagenDestacada" class="imagen" alt="Imagen Destacada">
+        </div>
+        <div class="column content-container">
+            <h1>{{item.nombre}}</h1>
+            <h2>{{item.tipoNegocio}}</h2>
+            <div class="status-bubble">
+                <span class="status-label">{{item.estadoNegocio}}</span>
+                <span class="status-label">{{item.tipoNegocio}}</span>
+            </div>
+            <!-- Mostrando la calificación -->
+            <div>
+                Calificación Promedio: {{item.calificacionPromedio}}
+            </div>
+        </div>
     </div>
 </div>

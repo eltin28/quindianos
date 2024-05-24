@@ -24,13 +24,13 @@
                      <a href="gestion-negocios" class="nav-link">Gestión negocios</a>
                   </li>
                   <!-- Si el usuario está autenticado, muestra el saludo -->
-                  <li *ngIf="isAuthenticated" class="nav-item custom-nav-item">
-                    <span>Hola, {{nombreUsuario}}</span>
+                  <li *ngIf="isAuthenticated" class="nav-item custom-nav-item-green">
+                    <a class="nav-link login-style" href="#">Hola, {{nombreUsuario}}</a>
                   </li>
 
                   <!-- Si el usuario NO está autenticado, muestra el botón de login -->
-                  <li *ngIf="!isAuthenticated" class="nav-item custom-nav-item">
-                    <a class="nav-link" href="registro">Login</a>
+                  <li *ngIf="!isAuthenticated" class="nav-item custom-nav-item-green">
+                    <a class="nav-link login-style" href="registro">Login</a>
                   </li>
                </ul>          
              </div>

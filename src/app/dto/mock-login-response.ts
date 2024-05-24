@@ -1,6 +1,6 @@
 export const mockLoginResponse = {
     respuesta: {
-      token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
+      token: "eyJhbGciOiJIUzM4NCJ9.eyJpZCI6IkNsaWVudGUxIiwibm9tYnJlIjoiSnVhbiIsInJvbCI6IkNMSUVOVEUiLCJzdWIiOiJqdWFuQGVtYWlsLmNvbSIsImlhdCI6MTcxNjQyNTExNCwiZXhwIjoxNzE2NDI4NzE0fQ.wom60kwz6wzJbxGCzKv5E5nVH9f7XGDiB0W8IB-LTkBnNaQ_NVTlLcUbcvdKlRRJ",
     }
   };
   
