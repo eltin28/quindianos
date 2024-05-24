@@ -3,6 +3,7 @@ export class UserInfoDTO {
         public id: string = '',
         public nombre: string = '',
         public rol: string = '',
-        public sub: string = ''
+        public sub: string = '',
+        public email: string = '',
     ){}
 }

@@ -31,12 +31,16 @@ export class TokenService {
 
   public login(token: string) {
     this.setToken(token);
-    this.router.navigate(["/"]);
+    this.router.navigate(["/"]).then(() => {
+      window.location.reload();
+    });
   }
 
   public logout() {
     window.sessionStorage.clear();
-    this.router.navigate(["/registro"]);
+    this.router.navigate(["/registro"]).then(() => {
+      window.location.reload();
+    })
   }
 
   public decodePayload(token: string): any {

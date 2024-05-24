@@ -20,8 +20,8 @@ export class GestionNegociosComponent {
 
     constructor(private negocioService: NegociosService, private tokenService: TokenService) {
         this.negocios = [];
-        this.seleccionados = []; // Inicializa seleccionados
-        this.textoBtnEliminar = ''; // Inicializa textoBtnEliminar
+        this.seleccionados = []; 
+        this.textoBtnEliminar = ''; 
         this.listarNegocios();
     }
 

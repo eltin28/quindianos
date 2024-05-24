@@ -20,18 +20,27 @@
                   <li class="nav-item custom-nav-item">
                      <a class="nav-link" href="destinos">Destinos</a>
                   </li>
+                  @if (isLogged) {
                   <li>
                      <a href="gestion-negocios" class="nav-link">Gestión negocios</a>
                   </li>
+                  }
+                  @if (isLogged) {
                   <!-- Si el usuario está autenticado, muestra el saludo -->
-                  <li *ngIf="isAuthenticated" class="nav-item custom-nav-item-green">
-                    <a class="nav-link login-style" href="#">Hola, {{nombreUsuario}}</a>
-                  </li>
-
+                  <li class="nav-item custom-nav-item-green">
+                    <button class="nav-link login-style" id="dropdownBtn" (click)="toggleMenu()">Hola, {{nombre}}</button>
+                    <ul class="dropdown-menu" id="dropdownMenu" [ngClass]="{'show': mostrarMenu}">
+                      <li>
+                        <button class="nav-link salirr" (click)="logout()">Salir</button>
+                      </li>
+                    </ul>                    
+                  </li>                  
+                }@else {
                   <!-- Si el usuario NO está autenticado, muestra el botón de login -->
-                  <li *ngIf="!isAuthenticated" class="nav-item custom-nav-item-green">
+                  <li class="nav-item custom-nav-item-green">
                     <a class="nav-link login-style" href="registro">Login</a>
                   </li>
+                }
                </ul>          
              </div>
          </div>
