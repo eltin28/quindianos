@@ -13,7 +13,7 @@ import { ActualizacionNegocioDTO } from '../dto/actualizacion-negocio-dto';
 
 export class NegociosService {
 
-  private negociosURL = "http://localhost:8080/api/negocios";
+  private negociosURL = "http://localhost:8080/api/publica";
 
   constructor(private http: HttpClient) { }
 
@@ -37,7 +37,8 @@ export class NegociosService {
     return this.http.get<MensajeDTO>(`${this.negociosURL}/listar-negocios/${codigoCliente}`);
   }
 
-  buscar(textoBusqueda: string): ItemNegocioDTO[] {
-    throw new Error('Method not implemented.');
+  public buscar(nombreBuscado: string): Observable<MensajeDTO> {
+    const nombreNormalizado = nombreBuscado.toLowerCase();
+    return this.http.get<MensajeDTO>(`${this.negociosURL}/listar-negocios-nombre/${(nombreNormalizado)}`);
   }
 }

@@ -8,6 +8,7 @@ import { DetalleNegocioComponent } from './componentes/detalle-negocio/detalle-n
 import { BusquedaComponent } from './componentes/busqueda/busqueda.component';
 import { LoginGuard } from './guards/permiso.service';
 import { RolesGuard } from './guards/roles.service';
+import { EditarPerfilClienteComponent } from './componentes/editar-perfil-cliente/editar-perfil-cliente.component';
 
 export const routes: Routes = [
     { path: '', component: InicioComponent },
@@ -16,8 +17,9 @@ export const routes: Routes = [
     { path: "gestion-negocios", component: GestionNegociosComponent, canActivate: [RolesGuard], data: { expectedRole: ["CLIENTE"] } },    
     { path: 'detalle-negocio/:codigo', component: DetalleNegocioComponent },
     { path: "busqueda/:texto", component: BusquedaComponent },
-    { path: "**", pathMatch: "full", redirectTo: "" },
+    { path: "editar-perfil-cliente", component: EditarPerfilClienteComponent},
     { path: "crear-negocio", component: CrearNegocioComponent, canActivate: [RolesGuard], data: {expectedRole: ["CLIENTE"] } },
+    { path: "**", pathMatch: "full", redirectTo: "" },
     // { path: "gestio-negocios-admin", component: GestionNegociosAdminComponent, canActivate:[RolesGuard], data: { expectedRole: ["MODERADOR"] } }
     
 ];

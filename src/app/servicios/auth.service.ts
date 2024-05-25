@@ -4,7 +4,7 @@ import { RegistroClienteDTO } from '../dto/registro-cliente-dto';
 import { LoginDTO } from '../dto/login-dto';
 import { MensajeDTO } from '../dto/mensaje-dto';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { tap, catchError } from 'rxjs/operators';
+import { ActualizacionUsuarioDTO } from '../dto/actualizacion-usuario-dto';
 import { TokenService } from './token.service';
 
 
@@ -23,5 +23,13 @@ export class AuthService {
 
   public loginCliente(loginDTO: LoginDTO): Observable<MensajeDTO> {
     return this.http.post<MensajeDTO>(`${this.authURL}/login-cliente`, loginDTO)
+  }
+
+  public actualizarUsuario(actualizacionUsuario: ActualizacionUsuarioDTO): Observable<MensajeDTO> {
+    return this.http.put<MensajeDTO>(`${this.authURL}/actualizar`, actualizacionUsuario);
+  }
+
+  public eliminarUsuario(codigoUsuario: string): Observable<MensajeDTO> {
+    return this.http.delete<MensajeDTO>(`http://localhost:8080/api/clientes/eliminar/${codigoUsuario}`);
   }
 }

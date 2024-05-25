@@ -43,6 +43,10 @@ export class TokenService {
     })
   }
 
+  public editarPerfil() {
+    this.router.navigate(["/editar-perfil-cliente"])
+  }
+
   public decodePayload(token: string): any {
     const payload = token!.split(".")[1];
     const payloadDecoded = Buffer.from(payload, 'base64').toString('ascii');
@@ -73,7 +77,15 @@ export class TokenService {
     const token = this.getToken(); // Asume que getToken devuelve el token JWT
     if (token) {
       const decodedValues = this.decodePayload(token); // Usa decodePayload para obtener el payload decodificado
-      return new UserInfoDTO(decodedValues.id, decodedValues.nombre, decodedValues.rol, decodedValues.sub);
+      return new UserInfoDTO(
+        decodedValues.id, 
+        decodedValues.nombre, 
+        decodedValues.rol, 
+        decodedValues.sub, 
+        decodedValues.fotoPerfil,
+        decodedValues.nickname, 
+        decodedValues.ciudadResidencia, 
+        decodedValues.email);
     }
     return new UserInfoDTO('', '', '', ''); // Retorna un nuevo UserInfoDTO vacío si no hay token
   }
