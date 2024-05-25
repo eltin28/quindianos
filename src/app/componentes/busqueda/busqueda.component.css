@@ -63,10 +63,15 @@
     padding: 5px 10px;
     background-color: green;
     color: white;
-    border-radius: 15px; /* Redondea las esquinas */
-    font-weight: bold; /* Haz que el texto sea negrita */
+    border-radius: 15px;
+    font-weight: bold;
 }
 
 .status-label:hover {
-    background-color: darkgreen; /* Cambia el color de fondo al pasar el mouse */
+    background-color: darkgreen;
+}
+
+#mapa {
+    width: 100%;
+    height: 400px;
 }

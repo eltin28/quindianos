@@ -2,13 +2,12 @@ import { Component } from '@angular/core';
 import { AuthService } from '../../servicios/auth.service';
 import { CommonModule } from '@angular/common';
 import { TokenService } from '../../servicios/token.service';
-import { MatMenuModule } from '@angular/material/menu';
 
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [CommonModule, MatMenuModule],
+  imports: [CommonModule],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
@@ -21,7 +20,6 @@ export class NavbarComponent {
   mostrarMenu = false;
 
   toggleMenu() {
-    console.log('Toggling menu');
     this.mostrarMenu = this.mostrarMenu === false?true:false;
   }
 
@@ -35,8 +33,11 @@ export class NavbarComponent {
   }
 
   public logout() {
-    console.log("Intenta")
     this.tokenService.logout();
+  }
+
+  public editarPerfil(){
+    this.tokenService.editarPerfil();
   }
 
 }

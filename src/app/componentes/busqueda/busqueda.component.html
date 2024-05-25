@@ -1,3 +1,4 @@
+<div id="mapa"></div>
 <div class="card" *ngFor="let item of resultados">
     <div class="card-header ps-5 pt-4 pb-4">
         <h5 class="card-title mb-0"><i class="fa-solid fa-magnifying-glass-location me-2"></i>Resultados de "{{textoBusqueda}}"</h5>
@@ -13,7 +14,6 @@
                 <span class="status-label">{{item.estadoNegocio}}</span>
                 <span class="status-label">{{item.tipoNegocio}}</span>
             </div>
-            <!-- Mostrando la calificación -->
             <div>
                 Calificación Promedio: {{item.calificacionPromedio}}
             </div>

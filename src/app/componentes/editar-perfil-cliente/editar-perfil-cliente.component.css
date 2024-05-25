@@ -1,0 +1,60 @@
+.card-container {
+    margin: 5% 20%;
+    padding: 10px;
+    border-radius: 15px;
+    filter: drop-shadow(0px 10px 30px rgba(0, 0, 0, 0.5));
+    display: flex;
+    flex-direction: column; /* Cambia a columna */
+    align-items: center; /* Centra el contenido horizontalmente */
+    background: rgba(182, 182, 182, 0.5);
+}
+
+.info-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.buttons-container {
+    display: flex; 
+    justify-content: center;
+    justify-content: space-around;
+    padding: 10px 10px;
+}
+
+/* Estilos existentes mantienen sus propósitos */
+.carta {
+    box-sizing: border-box;
+    margin-top: 5.5%;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.fotoPerfil {
+    position: relative;
+    margin-top: -4.5rem;
+    border-radius: 80px;
+    width: 150px;
+    border: 2px solid black;
+    z-index: 2;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+}
+
+.fotoPerfil:hover {
+    transform: scale(1.1);
+}
+
+.buttonPerfil {
+	border-radius: 20px;
+	border: 1px solid #47FF06;
+	background-color: #47FF06;
+	color: #FFFFFF;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 12px 45px;
+	margin-bottom: 20px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	transition: transform 80ms ease-in;
+}

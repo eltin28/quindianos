@@ -10,7 +10,6 @@ import { Alerta } from '../../dto/alerta';
 import { LoginDTO } from '../../dto/login-dto';
 import { TokenService } from '../../servicios/token.service';
 import { ImagenService } from '../../servicios/imagen.service';
-import { mockLoginResponse } from '../../dto/mock-login-response';
 
 @Component({
   selector: 'app-inicio',

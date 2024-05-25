@@ -21,14 +21,26 @@ export class BusquedaComponent {
   constructor(private route: ActivatedRoute, private negociosService: NegociosService, private mapaService: MapaService) {
     this.resultados = [];
     this.textoBusqueda = "";
-    this.route.params.subscribe(params => {
-      this.textoBusqueda = params['texto'];
-      this.resultados = this.negociosService.buscar(this.textoBusqueda);
-    });
+  }
+  
+  ngOnInit(): void {
+  this.mapaService.crearMapa();
+  this.mapaService.pintarMarcadores(this.resultados);
   }
 
-  ngOnInit(): void {
-    this.mapaService.crearMapa();
-    this.mapaService.pintarMarcadores(this.resultados);
+  public listarNegocios(){
+  
+    this.route.params.subscribe(params => {
+      this.textoBusqueda = params['texto'];
+      this.negociosService.buscar(this.textoBusqueda).subscribe({
+        next: (data) => {
+          this.resultados = data.respuesta;
+          console.log("palabra", this.textoBusqueda)
+        },
+        error: (error) => {
+          console.error(error);
+        }
+      });
+    })
   }
 }

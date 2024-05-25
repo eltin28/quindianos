@@ -1,0 +1,17 @@
+<div class="card-container">
+    <div class="title-container">
+        <h1 style="font-weight: bold; margin-bottom: 20px; margin-top: 12px">Perfil</h1>
+    </div>
+    <section class="carta">
+        <div class="info-container">
+            <img src="../../../assets/logo.png" alt="Foto de perfil" class="fotoPerfil">
+            <h2>{{ cliente.nombre }}</h2>
+            <p>{{ cliente.ciudadResidencia }}</p>
+            <p>{{ cliente.email }}</p>
+        </div>
+        <div class="buttons-container">
+            <button class="buttonPerfil" (click)="eliminar()">Borrar cuenta</button>
+            <button class="buttonPerfil">Actualizar cuenta</button>
+        </div>
+    </section>
+</div>

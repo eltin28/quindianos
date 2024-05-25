@@ -15,19 +15,22 @@ import { CommonModule } from '@angular/common';
 export class DetalleNegocioComponent {
 
   codigoNegocio: string = '';
-  negocio: ItemNegocioDTO | undefined;
+  negocio: ItemNegocioDTO;
 
-  // constructor(private route: ActivatedRoute, private negociosService: NegociosService) {
-  //   this.route.params.subscribe((params) => {
-  //     this.codigoNegocio = params['codigo'];
-  //     this.obtenerNegocio();
-  //   });
-  // }
+  constructor(private route: ActivatedRoute, private negociosService: NegociosService) {
+    this.negocio = new ItemNegocioDTO;
+    this.route.params.subscribe((params) => {
+      this.codigoNegocio = params['codigo'];
+      this.obtenerNegocio();
+    });
+  }
 
-  // public obtenerNegocio() {
-  //   const negocioConsultado = this.negociosService.obtener(this.codigoNegocio);
-  //   if (negocioConsultado != undefined) {
-  //     this.negocio = negocioConsultado;
-  //   }
-  // }
+  public obtenerNegocio() {
+    this.negociosService.obtener(this.codigoNegocio).subscribe({
+      next: (data) => {
+        this.negocio = data.respuesta;
+      }
+    })
+
+  }
 }
