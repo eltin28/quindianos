@@ -13,7 +13,7 @@ import { ActualizacionNegocioDTO } from '../dto/actualizacion-negocio-dto';
 
 export class NegociosService {
 
-  private negociosURL = "http://localhost:8080/api/publica";
+  private negociosURL = "https://quindianoback.onrender.com/api/publica";
 
   constructor(private http: HttpClient) { }
 

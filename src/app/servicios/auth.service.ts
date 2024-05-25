@@ -13,7 +13,7 @@ import { TokenService } from './token.service';
 })
 export class AuthService {
 
-  private authURL = "http://localhost:8080/api/auth";
+  private authURL = "https://quindianoback.onrender.com/api/auth";
 
   constructor(private http: HttpClient, private tokenService: TokenService) { }
 
@@ -30,6 +30,6 @@ export class AuthService {
   }
 
   public eliminarUsuario(codigoUsuario: string): Observable<MensajeDTO> {
-    return this.http.delete<MensajeDTO>(`http://localhost:8080/api/clientes/eliminar/${codigoUsuario}`);
+    return this.http.delete<MensajeDTO>(`https://quindianoback.onrender.com/api/clientes/eliminar/${codigoUsuario}`);
   }
 }

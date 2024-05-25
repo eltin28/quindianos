@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class PublicoService {
 
-  private publicoURL = "http://localhost:8080/api/publico";
+  private publicoURL = "https://quindianoback.onrender.com/api/publico";
 
   constructor(private http: HttpClient) { }
 
